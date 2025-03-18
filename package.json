@@ -1,0 +1,15 @@
+{
+  "name": "clone-ifood",
+  "version": "1.0.0",
+  "description": "Teste Clone Ifood",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henrique Salazar da Silva",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.13.0"
+  }
+}

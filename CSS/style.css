@@ -1,0 +1,130 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    margin-bottom: 0.5rem;
+}
+
+/* Centraliza a div do login na tela */
+.login-container {
+    background: white;
+    padding: 1.5625rem; /* 25px */
+    border-radius: 0.625rem; /* 10px */
+    box-shadow: 0px 0px 0.625rem rgba(0, 0, 0, 0.1); /* 10px */
+    width: 100%;
+    max-width: 21.875rem; /* 350px */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Garante que os elementos fiquem centralizados */
+}
+
+/* Ajusta os inputs */
+.input-group {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.9375rem; /* 15px */
+}
+
+label {
+    padding: 0.25rem;
+    display: block;
+    font-size: 0.875rem; /* 14px */
+    font-weight: bold;
+    margin-bottom: 0.3125rem; /* 5px */
+}
+
+input {
+    width: 100%;
+    padding: 0.625rem; /* 10px */
+    border: 0.0625rem solid #ccc; /* 1px */
+    border-radius: 0.3125rem; /* 5px */
+}
+
+/* Botão */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.625rem; /* 10px */
+    width: 100%;
+    cursor: pointer;
+    margin-top: 0.625rem; /* 10px */
+    border-radius: 0.3125rem; /* 5px */
+    transition: 0.25s;
+}
+
+button:hover {
+    background-color: #0068d6;
+    border-radius: .5rem;
+}
+
+/* Ajuste para links ficarem lado a lado */
+.links-container {
+    display: flex;
+    gap: 1.5rem; /* Espaço entre os links */
+    margin-top: 1rem; /* 10px */
+    justify-content: center; /* Centraliza os links horizontalmente */
+    align-items: center; /* Garante que os links fiquem alinhados verticalmente */
+}
+
+/* Estilos para os links */
+a {
+    font-size: 0.85rem; /* 12.8px */
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Mensagens de erro */
+.error-message{
+    color: #ff0000;
+    font-weight: bold;
+    padding: 0.5rem;
+    text-decoration: underline;
+}
+
+/* Media Query para dispositivos pequenos (telas menores que 768px) */
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%; /* Reduz a largura da .login-container para 90% da tela */
+        max-width: none; /* Remove o max-width */
+    }
+
+    h2 {
+        font-size: 1.25rem; /* Ajusta o tamanho do título */
+    }
+
+    .input-group {
+        margin-bottom: 1rem; /* Ajusta o espaçamento entre os campos */
+    }
+
+    button {
+        padding: 0.75rem; /* Aumenta o padding do botão para facilitar o clique */
+    }
+
+    .links-container {
+        flex-direction: column; /* Alinha os links na vertical em telas pequenas */
+        gap: 0.5rem; /* Reduz o espaço entre os links */
+    }
+
+    a {
+        font-size: 1rem; /* Ajusta o tamanho da fonte dos links */
+    }
+}
