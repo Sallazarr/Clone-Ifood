@@ -1,104 +1,60 @@
-// document.getElementById("loginForm").addEventListener("submit", function(event) {
-//     event.preventDefault(); // Impede o envio do formulário
+const express = require("express");
+const bodyParser = require("body-parser");
+const bcrypt = require("bcryptjs");
+const mysql = require("mysql2");
+const cors = require("cors");
 
-//     let email = document.getElementById("email").value;
-//     let senha = document.getElementById("senha").value;
-//     let errorMessage = document.getElementById("error-message");
-
-//     // Usuário e senha fixos para teste (simulação)
-//     const usuarioTeste = {
-//         email: "admin@ifoodclone.com",
-//         senha: "123456"
-//     };
-
-//     if (email === usuarioTeste.email && senha === usuarioTeste.senha) {
-//         localStorage.setItem("usuarioLogado", email);
-//         window.location.href = "dashboard.html"; // Redireciona para a área administrativa
-//     } else {
-//         errorMessage.innerText = "E-mail ou senha inválidos.";
-//     }
-// });
-
-
-// index.js (Backend)
-const express = require('express');
-const mysql = require('mysql2');
 const app = express();
 const port = 3000;
 
-// Conexão com o banco de dados MySQL
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',  // sua senha do MySQL
-  database: 'clone_ifood',  // substitua com o nome da sua base de dados
+// Configurar middleware
+app.use(bodyParser.json());
+app.use(cors());
+
+// Conectar ao banco de dados MySQL
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "clone_ifood"
 });
 
-connection.connect();
-
-// Defina uma rota para renderizar a página de clientes
-app.get('/clientes', (req, res) => {
-  // Consulta no banco de dados para pegar todos os clientes
-  connection.query('SELECT * FROM clientes', (err, results) => {
+db.connect(err => {
     if (err) {
-      console.error(err);
-      res.status(500).send('Erro ao consultar o banco de dados.');
-      return;
+        console.error("Erro ao conectar ao banco de dados:", err);
+        return;
     }
-
-    // Renderiza a página HTML e passa os dados dos clientes
-    let clientesHtml = `
-      <html>
-      <head>
-        <title>Lista de Clientes</title>
-        <style>
-          body { font-family: Arial, sans-serif; margin: 20px; }
-          table { width: 100%; border-collapse: collapse; }
-          table, th, td { border: 1px solid black; }
-          th, td { padding: 10px; text-align: left; }
-        </style>
-      </head>
-      <body>
-        <h1>Lista de Clientes</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Sobrenome</th>
-              <th>Email</th>
-              <th>Telefone</th>
-            </tr>
-          </thead>
-          <tbody>
-    `;
-
-    // Adiciona cada cliente como uma linha na tabela
-    results.forEach(client => {
-      clientesHtml += `
-        <tr>
-          <td>${client.id_cliente}</td>
-          <td>${client.nome}</td>
-          <td>${client.sobrenome}</td>
-          <td>${client.email}</td>
-          <td>${client.telefone}</td>
-        </tr>
-      `;
-    });
-
-    clientesHtml += `
-          </tbody>
-        </table>
-      </body>
-      </html>
-    `;
-
-    // Envia o HTML gerado para o cliente
-    res.send(clientesHtml);
-  });
+    console.log("Conectado ao banco de dados!");
 });
 
-// Inicia o servidor na porta 3000
+// Rota para cadastrar um novo usuário
+app.post("/register", (req, res) => {
+    const { nome, sobrenome, email, celular, senha } = req.body;
+
+    // Verificar se o e-mail já existe
+    db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
+        if (err) return res.status(500).json({ success: false, message: "Erro no servidor!" });
+
+        if (result.length > 0) {
+            return res.json({ success: false, message: "E-mail já cadastrado!" });
+        }
+
+        // Criptografar a senha
+        bcrypt.hash(senha, 10, (err, hashedPassword) => {
+            if (err) return res.status(500).json({ success: false, message: "Erro ao processar senha!" });
+
+            // Inserir o usuário no banco de dados
+            const query = "INSERT INTO usuarios (nome, sobrenome, email, celular, senha) VALUES (?, ?, ?, ?, ?)";
+            db.query(query, [nome, sobrenome, email, celular, hashedPassword], (err, result) => {
+                if (err) return res.status(500).json({ success: false, message: "Erro ao cadastrar usuário!" });
+
+                res.json({ success: true, message: "Cadastro realizado com sucesso!" });
+            });
+        });
+    });
+});
+
+// Iniciar o servidor
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`Servidor rodando na porta ${port}`);
 });

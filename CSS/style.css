@@ -1,5 +1,6 @@
 /* Reset básico */
 * {
+    font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,51 +8,169 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+    background: linear-gradient(90deg, rgb(239, 239, 239) 40%, rgb(85, 176, 255) 100%);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-h2 {
-    margin-bottom: 0.5rem;
+
+/* Cria uma estrutura flex para dividir a página em 2 colunas */
+.page-container {
+    flex-wrap: wrap; /* Permite que os itens se ajustem automaticamente */
+    display: flex;
+    width: 100%;
+    height: 100vh;
+ 
+}
+
+
+
+/* Lado esquerdo: informações da empresa */
+.left-side {
+    flex: 1;
+    margin: 10vh; /* Mantém a margem para ficar na mesma posição */
+    margin-left: 12.5%;
+    padding: 2rem;
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o texto horizontalmente */
+    justify-content: flex-start; /* Mantém o alinhamento no topo */
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    width: auto; /* Ajusta a largura conforme o conteúdo */
+    min-height: auto; /* Deixa a altura automática */
+    max-width: 500px; /* Limita a largura para não ficar muito grande */
+    transition: transform .25s;
+    flex-wrap: wrap;
+}
+
+.left-side:hover{
+    transform: scale(1.05);
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem; /* Espaçamento entre os textos */
+    text-align: center;
+    color: #000000;
+    max-width: 80%;
+    padding: 1rem;
+}
+
+.text h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #007bff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.text h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #000000;
+}
+
+.text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000000;
+}
+
+.text p:last-child {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Faz o container se ajustar ao conteúdo */
+@media (min-width: 769px) {
+    .left-side {
+        height: auto; /* Ajusta conforme o texto */
+    }
+
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin: 10vh; /* Mantém a margem para ficar na mesma posição */
+}
+
+
+/* Estiliza o botão de alternar cores */
+#themeSwitcher {
+    position: fixed;
+    top: 1rem;   /* Ajuste para ficar no topo */
+    left: 1rem;  /* Ajuste para ficar na esquerda */
+    z-index: 10; /* Garante que fique acima de outros elementos */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    width: auto;
+    font-weight: 600;
+}
+
+#themeSwitcher:hover {
+    background-color: #0056b3;
 }
 
 /* Centraliza a div do login na tela */
 .login-container {
-    background: white;
-    padding: 1.5625rem; /* 25px */
-    border-radius: 0.625rem; /* 10px */
-    box-shadow: 0px 0px 0.625rem rgba(0, 0, 0, 0.1); /* 10px */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 0.625rem rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 21.875rem; /* 350px */
-    text-align: center;
+    max-width: 24rem; /* 350px */
+    height: 26rem;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Garante que os elementos fiquem centralizados */
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* Ajusta os inputs */
 .input-group {
     width: 100%;
     text-align: left;
-    margin-bottom: 0.9375rem; /* 15px */
+    margin-bottom: 0.9375rem;
 }
 
 label {
     padding: 0.25rem;
+    margin-top: 2rem;
     display: block;
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     font-weight: bold;
-    margin-bottom: 0.3125rem; /* 5px */
+    margin-bottom: 0.3125rem;
 }
 
 input {
     width: 100%;
-    padding: 0.625rem; /* 10px */
-    border: 0.0625rem solid #ccc; /* 1px */
-    border-radius: 0.3125rem; /* 5px */
+    padding: 0.625rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem;
+}
+
+input + button{
+    margin-top: 2rem;
 }
 
 /* Botão */
@@ -59,11 +178,11 @@ button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 0.625rem; /* 10px */
+    padding: 0.625rem;
     width: 100%;
     cursor: pointer;
-    margin-top: 0.625rem; /* 10px */
-    border-radius: 0.3125rem; /* 5px */
+    margin-top: 0.625rem;
+    border-radius: 0.3125rem;
     transition: 0.25s;
 }
 
@@ -75,15 +194,15 @@ button:hover {
 /* Ajuste para links ficarem lado a lado */
 .links-container {
     display: flex;
-    gap: 1.5rem; /* Espaço entre os links */
-    margin-top: 1rem; /* 10px */
-    justify-content: center; /* Centraliza os links horizontalmente */
-    align-items: center; /* Garante que os links fiquem alinhados verticalmente */
+    gap: 1.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Estilos para os links */
 a {
-    font-size: 0.85rem; /* 12.8px */
+    font-size: 0.85rem;
     text-decoration: none;
     color: #007bff;
 }
@@ -102,29 +221,37 @@ a:hover {
 
 /* Media Query para dispositivos pequenos (telas menores que 768px) */
 @media (max-width: 768px) {
+    .page-container {
+        flex-direction: column; /* Para telas pequenas, os itens vão ficar empilhados */
+    }
+
+    .left-side {
+        padding: 1rem;
+    }
+
     .login-container {
-        width: 90%; /* Reduz a largura da .login-container para 90% da tela */
-        max-width: none; /* Remove o max-width */
+        width: 90%;
+        max-width: none;
     }
 
     h2 {
-        font-size: 1.25rem; /* Ajusta o tamanho do título */
+        font-size: 1.25rem;
     }
 
     .input-group {
-        margin-bottom: 1rem; /* Ajusta o espaçamento entre os campos */
+        margin-bottom: 1rem;
     }
 
     button {
-        padding: 0.75rem; /* Aumenta o padding do botão para facilitar o clique */
+        padding: 0.75rem;
     }
 
     .links-container {
-        flex-direction: column; /* Alinha os links na vertical em telas pequenas */
-        gap: 0.5rem; /* Reduz o espaço entre os links */
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
     a {
-        font-size: 1rem; /* Ajusta o tamanho da fonte dos links */
+        font-size: 1rem;
     }
 }

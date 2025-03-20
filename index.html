@@ -3,27 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login FoodI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/Clone Ifood/CSS/style.css">
     <script type="module" src="index.js" defer></script>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" required>
-            
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" required>
-            
-            <button type="submit">Entrar</button>
-        </form>
-        <p id="error-message" class="error-message"></p>
-        <div class="links-container">
-            <a href="/Clone Ifood/cadastro.html">Cadastre-se aqui</a>
-            <a href="">Esqueci minha senha</a>
+    <div class="page-container">
+        <div class="left-side">
+            <button id="themeSwitcher">Tema Escuro</button>
+            <div class="text">
+             <h1>Bem Vindo a FoodI!</h1>
+             <h2>Peça seu prato favorito com um clique.</h2>
+            <p>O FoodI é a maneira mais rápida e prática de receber suas refeições favoritas, no conforto da sua casa. Escolha entre os melhores restaurantes, faça seu pedido e receba sem complicação.</p>
+            <p>Simples, rápido e delicioso. A melhor experiência de delivery ao seu alcance.</p>
+        </div>
+        </div>
+
+        <div class="right-side">
+            <div class="login-container">
+                <h2>Login FoodI</h2>
+                <form id="loginForm">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" required>
+
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" required>
+
+                    <button type="submit">Entrar</button>
+                </form>
+                <p id="error-message" class="error-message"></p>
+                <div class="links-container">
+                    <a href="/Clone Ifood/cadastro.html">Cadastrar-se</a>
+                    <a href="">Esqueceu a senha? </a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
