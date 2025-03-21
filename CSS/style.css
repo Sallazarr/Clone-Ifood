@@ -106,7 +106,6 @@ body {
     max-width: 2rem; /* Limita a largura máxima a 512px */
     height: auto; /* Ajusta a altura proporcionalmente à largura */
     object-fit: contain; /* Faz a imagem se ajustar sem distorcer */
-    background-color: var(--color-img);
 }
 
 .text h2 {
@@ -190,7 +189,6 @@ body {
     max-width: 3rem; /* Limita a largura máxima a 512px */
     height: auto; /* Ajusta a altura proporcionalmente à largura */
     object-fit: contain; /* Faz a imagem se ajustar sem distorcer */
-    color: var(--color-img);
 }
 
 label {

@@ -11,7 +11,6 @@ document.getElementById('themeSwitcher').addEventListener('click', function(){
     root.style.setProperty('--color-error', '#ff4d4d')
     root.style.setProperty('--color-shadow', 'rgba(0, 0, 0, 0.6)')
     root.style.setProperty('--color-link', '#66b3ff')
-    root.style.setProperty('--color-img', '#ffffff')
     body.dataset.theme = 'dark'
     }
 
