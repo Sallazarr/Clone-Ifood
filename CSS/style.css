@@ -1,10 +1,33 @@
+/* Definindo as variáveis de cor */
+:root {
+    /* Cores Tema Claro */
+    --color-primary: #007bff;
+    --color-primary-hover: #0068d6;
+    --color-background: rgba(255, 255, 255, 0.9);
+    --color-background-light: rgba(255, 255, 255, 0.4);
+    --color-text: #000000;
+    --color-error: #ff0000;
+    --color-shadow: rgba(0, 0, 0, 0.25);
+    --color-link: #007bff;
+    --color-img:#000000;
+
+   /*  --color-primary: #66b3ff;  Um tom mais claro de azul para o modo escuro 
+    --color-primary-hover: #3385cc;  Um tom mais escuro para hover 
+    --color-background: rgba(18, 18, 18, 1); Fundo escuro 
+    --color-background-light: rgba(31, 31, 31, 0.9);  Um fundo claro, mas ainda escuro 
+    --color-text: #e0e0e0; /Texto claro, quase branco 
+    --color-error: #ff4d4d;  Vermelho mais suave para mensagens de erro 
+    --color-shadow: rgba(0, 0, 0, 0.6);  Sombras mais intensas 
+    --color-link: #66b3ff; Azul mais suave para links no modo escuro */
+
+}
+
 /* Reset básico */
 * {
     font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
 
 #particles-js {
@@ -16,16 +39,13 @@
     z-index: -1; /* Para que fique no fundo */
 }
 
-
-
 body {
-    background: linear-gradient(90deg, rgb(239, 239, 239) 40%, rgb(85, 176, 255) 100%); 
+    background: linear-gradient(90deg, rgb(239, 239, 239) 40%, rgb(85, 176, 255) 100%);
     height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 /* Cria uma estrutura flex para dividir a página em 2 colunas */
 .page-container {
@@ -33,10 +53,7 @@ body {
     display: flex;
     width: 100%;
     height: 100vh;
- 
 }
-
-
 
 /* Lado esquerdo: informações da empresa */
 .left-side {
@@ -49,7 +66,7 @@ body {
     flex-direction: column;
     align-items: center; /* Centraliza o texto horizontalmente */
     justify-content: flex-start; /* Mantém o alinhamento no topo */
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--color-background-light);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -61,7 +78,7 @@ body {
     flex-wrap: wrap;
 }
 
-.left-side:hover{
+.left-side:hover {
     transform: scale(1.05);
 }
 
@@ -72,7 +89,7 @@ body {
     justify-content: center;
     gap: 1.5rem; /* Espaçamento entre os textos */
     text-align: center;
-    color: #000000;
+    color: var(--color-text);
     max-width: 80%;
     padding: 1rem;
 }
@@ -80,33 +97,33 @@ body {
 .text h1 {
     font-size: 2rem;
     font-weight: 700;
-    color: #007bff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    color: var(--color-primary);
+    text-shadow: 2px 2px 4px var(--color-shadow);
 }
 
-.text  img {
+.text img {
     width: auto; /* Faz a imagem ocupar 80% da largura do contêiner */
     max-width: 2rem; /* Limita a largura máxima a 512px */
     height: auto; /* Ajusta a altura proporcionalmente à largura */
     object-fit: contain; /* Faz a imagem se ajustar sem distorcer */
- 
+    background-color: var(--color-img);
 }
 
 .text h2 {
     font-size: 1.3rem;
     font-weight: 500;
-    color: #000000;
+    color: var(--color-text);
 }
 
 .text p {
     font-size: 1rem;
     line-height: 1.6;
-    color: #000000;
+    color: var(--color-text);
 }
 
 .text p:last-child {
     font-weight: bold;
-    color: #007bff;
+    color: var(--color-primary);
 }
 
 /* Faz o container se ajustar ao conteúdo */
@@ -114,7 +131,6 @@ body {
     .left-side {
         height: auto; /* Ajusta conforme o texto */
     }
-
 }
 
 .right-side {
@@ -126,14 +142,13 @@ body {
     margin: 10vh; /* Mantém a margem para ficar na mesma posição */
 }
 
-
 /* Estiliza o botão de alternar cores */
 #themeSwitcher {
     position: fixed;
-    top: 1rem;   /* Ajuste para ficar no topo */
-    left: 1rem;  /* Ajuste para ficar na esquerda */
+    top: 1rem; /* Ajuste para ficar no topo */
+    left: 1rem; /* Ajuste para ficar na esquerda */
     z-index: 10; /* Garante que fique acima de outros elementos */
-    background-color: #007bff;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -146,11 +161,11 @@ body {
 }
 
 #themeSwitcher:hover {
-    background-color: #0056b3;
+    background-color: var(--color-primary-hover);
 }
 
 .login-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--color-background);
     padding: 1.5rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 0.625rem rgba(0, 0, 0, 0.1);
@@ -165,7 +180,7 @@ body {
     position: relative;
 }
 
-.login-container > h2{
+.login-container > h2 {
     text-decoration: underline;
 }
 
@@ -175,7 +190,7 @@ body {
     max-width: 3rem; /* Limita a largura máxima a 512px */
     height: auto; /* Ajusta a altura proporcionalmente à largura */
     object-fit: contain; /* Faz a imagem se ajustar sem distorcer */
- 
+    color: var(--color-img);
 }
 
 label {
@@ -194,13 +209,13 @@ input {
     border-radius: 0.3125rem;
 }
 
-input + button{
+input + button {
     margin-top: 2rem;
 }
 
 /* Botão */
 button {
-    background-color: #007bff;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 0.625rem;
@@ -212,7 +227,7 @@ button {
 }
 
 button:hover {
-    background-color: #0068d6;
+    background-color: var(--color-primary-hover);
     border-radius: .5rem;
 }
 
@@ -229,7 +244,7 @@ button:hover {
 a {
     font-size: 0.85rem;
     text-decoration: none;
-    color: #007bff;
+    color: var(--color-link);
 }
 
 a:hover {
@@ -237,8 +252,8 @@ a:hover {
 }
 
 /* Mensagens de erro */
-.error-message{
-    color: #ff0000;
+.error-message {
+    color: var(--color-error);
     font-weight: bold;
     padding: 0.5rem;
     text-decoration: underline;
