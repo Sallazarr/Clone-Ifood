@@ -1,6 +1,60 @@
 let root = document.querySelector(':root')
 let body = document.querySelector('body')
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
+    const errorMessage = document.getElementById("error-message");
+
+    // Função para verificar o login do usuário
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Pegando os valores dos campos de email e senha
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
+
+        // Validação simples no cliente
+        if (!email || !senha) {
+            errorMessage.textContent = "Por favor, preencha todos os campos.";
+            return;
+        }
+
+        try {
+            // Enviar a requisição para o servidor (fazer login)
+            const response = await fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, senha })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                // Se o login for bem-sucedido, redireciona para a página principal
+                // Salva o tipo de usuário no localStorage para uso posterior
+                localStorage.setItem("userType", result.tipo); // "client" ou "restaurant"
+                localStorage.setItem("userName", result.nome); // Nome do usuário
+                // Redirecionar dependendo do tipo de usuário
+                if (result.tipo === "client") {
+                    window.location.href = "/Clone Ifood/client-dashboard.html"; // Página de cliente
+                } else {
+                    window.location.href = "/Clone Ifood/restaurant-dashboard.html"; // Página de restaurante
+                }
+            } else {
+                // Caso haja erro, exibe a mensagem de erro
+                errorMessage.textContent = result.mensagem || "Erro ao fazer login.";
+            }
+        } catch (error) {
+            console.error("Erro ao tentar fazer login:", error);
+            errorMessage.textContent = "Erro ao efetuar login";
+        }
+    });
+});
+
+
 document.getElementById('themeSwitcher').addEventListener('click', function(){
     if(body.dataset.theme === 'light') {
     root.style.setProperty('--color-primary', '#66b3ff')

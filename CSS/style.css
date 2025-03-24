@@ -170,7 +170,8 @@ body {
     box-shadow: 0px 0px 0.625rem rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 24rem; /* 350px */
-    height: 26rem;
+    height: auto;
+    max-height: 30rem;
     text-align: left;
     display: flex;
     flex-direction: column;

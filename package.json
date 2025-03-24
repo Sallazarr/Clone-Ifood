@@ -2,7 +2,7 @@
   "name": "clone-ifood",
   "version": "1.0.0",
   "description": "Teste Clone Ifood",
-  "main": "index.js",
+  "main": "node.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,5 +14,14 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mysql2": "^3.14.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sallazarr/Clone-Ifood.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Sallazarr/Clone-Ifood/issues"
+  },
+  "homepage": "https://github.com/Sallazarr/Clone-Ifood#readme"
 }
