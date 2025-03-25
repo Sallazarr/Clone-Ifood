@@ -87,6 +87,8 @@ app.post("/cadastro", (req, res) => {
     });
 });
 
+
+
 // 📌 Rota para listar todos os Restaurantes
 app.get("/restaurantes", (req, res) => {
     db.query("SELECT * FROM restaurantes", (err, result) => {

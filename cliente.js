@@ -26,7 +26,7 @@ window.onload = () => {
             botaoVerProdutos.forEach(botao => {
                 botao.addEventListener("click", (e) => {
                     const idRestaurante = e.target.dataset.id;
-                    window.location.href = `/produtos.html?idRestaurante=${idRestaurante}`;
+                    window.location.href = `produtos.html?idRestaurante=${idRestaurante}`;
                 });
             });
         })

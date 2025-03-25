@@ -9,18 +9,20 @@
     --color-error: #ff0000;
     --color-shadow: rgba(0, 0, 0, 0.25);
     --color-link: #007bff;
-    --color-img:#000000;
-
-   /*  --color-primary: #66b3ff;  Um tom mais claro de azul para o modo escuro 
-    --color-primary-hover: #3385cc;  Um tom mais escuro para hover 
-    --color-background: rgba(18, 18, 18, 1); Fundo escuro 
-    --color-background-light: rgba(31, 31, 31, 0.9);  Um fundo claro, mas ainda escuro 
-    --color-text: #e0e0e0; /Texto claro, quase branco 
-    --color-error: #ff4d4d;  Vermelho mais suave para mensagens de erro 
-    --color-shadow: rgba(0, 0, 0, 0.6);  Sombras mais intensas 
-    --color-link: #66b3ff; Azul mais suave para links no modo escuro */
-
+    --opacity-background: 1;
 }
+
+/* Definindo as cores para o tema escuro (serão usadas quando o tema escuro for ativado) */
+/* [data-theme='dark'] {
+    --color-primary: #66b3ff;
+    --color-primary-hover: #3385cc;
+    --color-background: rgba(18, 18, 18, 1);
+    --color-background-light: rgba(31, 31, 31, 0.9);
+    --color-text: #e0e0e0;
+    --color-error: #ff4d4d;
+    --color-shadow: rgba(0, 0, 0, 0.6);
+    --color-link: #66b3ff;
+} */
 
 /* Reset básico */
 * {
@@ -72,10 +74,12 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
     width: auto; /* Ajusta a largura conforme o conteúdo */
-    min-height: auto; /* Deixa a altura automática */
     max-width: 500px; /* Limita a largura para não ficar muito grande */
+    height: auto; /* Deixa a altura automática */
+    max-height:100vh;
     transition: transform .25s;
     flex-wrap: wrap;
+    opacity: var(--opacity-background);
 }
 
 .left-side:hover {
@@ -139,6 +143,7 @@ body {
     align-items: center;
     border-radius: 20px;
     margin: 10vh; /* Mantém a margem para ficar na mesma posição */
+    
 }
 
 /* Estiliza o botão de alternar cores */
@@ -178,6 +183,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     position: relative;
+    opacity: var(--opacity-background);
 }
 
 .login-container > h2 {
@@ -199,6 +205,7 @@ label {
     font-size: 0.875rem;
     font-weight: bold;
     margin-bottom: 0.3125rem;
+    color: var(--color-text);
 }
 
 input {
@@ -238,6 +245,9 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
+
+/* Estilos para os links*
+
 
 /* Estilos para os links */
 a {
@@ -294,3 +304,5 @@ a:hover {
         font-size: 1rem;
     }
 }
+
+
