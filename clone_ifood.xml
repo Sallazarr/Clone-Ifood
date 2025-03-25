@@ -5,7 +5,7 @@
 - https://www.phpmyadmin.net
 -
 - Host: 127.0.0.1
-- Tempo de geração: 25/03/2025 às 03:57
+- Tempo de geração: 25/03/2025 às 17:55
 - Versão do servidor: 10.4.32-MariaDB
 - Versão do PHP: 8.2.12
 -->
@@ -100,11 +100,11 @@
         </table>
         <table name="clientes">
             <column name="id_cliente">2</column>
-            <column name="nome">João Guilherme</column>
-            <column name="sobrenome">Bernardo Mayer</column>
-            <column name="email">joao@gmail.com</column>
+            <column name="nome">Nadine</column>
+            <column name="sobrenome">Castro D&#039;Avila</column>
+            <column name="email">nadinecstt@gmail.com</column>
             <column name="senha">321321</column>
-            <column name="telefone">51982327874</column>
+            <column name="telefone">9999999999</column>
         </table>
         <!-- Tabela itens_pedido -->
         <!-- Tabela pedidos -->
@@ -116,7 +116,7 @@
             <column name="descricao">Pizza clássica com molho de tomate, mozzarella de búfala, manjericão e azeite de oliva.</column>
             <column name="preco">35.00</column>
             <column name="categoria">NULL</column>
-            <column name="imagem">https://rossopizza.com.br/salao/wp-content/uploads/2019/09/istock-181175167.jpg</column>
+            <column name="imagem">https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0KFDZkjY8zVpr1ftr2n7Rm_OLf0Eq3inoxw&amp;s</column>
         </table>
         <table name="produtos">
             <column name="id_produto">2</column>
@@ -125,7 +125,7 @@
             <column name="descricao">Pizza com molho de tomate, queijo mozzarella, calabresa fatiada e cebola.</column>
             <column name="preco">38.00</column>
             <column name="categoria">NULL</column>
-            <column name="imagem">https://blog.novasafra.com.br/wp-content/uploads/2016/01/accb7d_37d37d9f1001e88384dafc6e5cc60c4f.jpg_1024-780x450.jpg</column>
+            <column name="imagem">https://diariodonordeste.verdesmares.com.br/image/contentid/policy:1.3277542:1663012513/Pizza-de-calabresa.jpg?f=default&amp;$p$f=00df3e9</column>
         </table>
         <!-- Tabela restaurantes -->
         <table name="restaurantes">
@@ -134,7 +134,7 @@
             <column name="endereco">Avenida Itália, 123 - Centro</column>
             <column name="telefone">987654321</column>
             <column name="email">pizzaria@bellaitalia.com</column>
-            <column name="imagem">https://img.freepik.com/vetores-premium/logotipo-da-pizza-italiana-com-uma-pizza-e-um-chef-segurando-uma-pizza_850580-18.jpg?semt=ais_hybrid</column>
+            <column name="imagem">https://img.freepik.com/vetores-premium/logotipo-da-pizza-italiana-com-uma-pizza-e-um-chef-segurando-uma-pizza_850580-18.jpg</column>
         </table>
     </database>
 </pma_xml_export>

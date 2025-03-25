@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/03/2025 às 03:57
+-- Tempo de geração: 25/03/2025 às 17:55
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id_cliente`, `nome`, `sobrenome`, `email`, `senha`, `telefone`) VALUES
 (1, 'Henrique', 'Salazar da Silva', 'henriquesalazards16@hotmail.com', '123123', '51982327837'),
-(2, 'João Guilherme', 'Bernardo Mayer', 'joao@gmail.com', '321321', '51982327874');
+(2, 'Nadine', 'Castro D\'Avila', 'nadinecstt@gmail.com', '321321', '9999999999');
 
 -- --------------------------------------------------------
 
@@ -93,8 +93,8 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id_produto`, `id_restaurante`, `nome`, `descricao`, `preco`, `categoria`, `imagem`) VALUES
-(1, 1, 'Pizza Margherita', 'Pizza clássica com molho de tomate, mozzarella de búfala, manjericão e azeite de oliva.', 35.00, NULL, 'https://rossopizza.com.br/salao/wp-content/uploads/2019/09/istock-181175167.jpg'),
-(2, 1, 'Pizza Calabresa', 'Pizza com molho de tomate, queijo mozzarella, calabresa fatiada e cebola.', 38.00, NULL, 'https://blog.novasafra.com.br/wp-content/uploads/2016/01/accb7d_37d37d9f1001e88384dafc6e5cc60c4f.jpg_1024-780x450.jpg');
+(1, 1, 'Pizza Margherita', 'Pizza clássica com molho de tomate, mozzarella de búfala, manjericão e azeite de oliva.', 35.00, NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0KFDZkjY8zVpr1ftr2n7Rm_OLf0Eq3inoxw&s'),
+(2, 1, 'Pizza Calabresa', 'Pizza com molho de tomate, queijo mozzarella, calabresa fatiada e cebola.', 38.00, NULL, 'https://diariodonordeste.verdesmares.com.br/image/contentid/policy:1.3277542:1663012513/Pizza-de-calabresa.jpg?f=default&$p$f=00df3e9');
 
 -- --------------------------------------------------------
 
@@ -116,7 +116,7 @@ CREATE TABLE `restaurantes` (
 --
 
 INSERT INTO `restaurantes` (`id_restaurante`, `nome`, `endereco`, `telefone`, `email`, `imagem`) VALUES
-(1, 'Pizzaria Bella Italia', 'Avenida Itália, 123 - Centro', '987654321', 'pizzaria@bellaitalia.com', 'https://img.freepik.com/vetores-premium/logotipo-da-pizza-italiana-com-uma-pizza-e-um-chef-segurando-uma-pizza_850580-18.jpg?semt=ais_hybrid');
+(1, 'Pizzaria Bella Italia', 'Avenida Itália, 123 - Centro', '987654321', 'pizzaria@bellaitalia.com', 'https://img.freepik.com/vetores-premium/logotipo-da-pizza-italiana-com-uma-pizza-e-um-chef-segurando-uma-pizza_850580-18.jpg');
 
 --
 -- Índices para tabelas despejadas
