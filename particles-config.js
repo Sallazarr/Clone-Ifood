@@ -11,11 +11,11 @@ particlesJS("particles-js", {
             distance: 150, // Distância entre as partículas conectadas
             color: "#007bff", // Cor das linhas
             opacity: .5, // Opacidade das linhas
-            width: .5 // Espessura das linhas
+            width: 1 // Espessura das linhas
         }
     },
     interactivity: {
         events: { onhover: { enable: true, mode: "repulse" } },
-        modes: { repulse: { distance: 1000, duration: 0.4 } }
+        modes: { repulse: { distance: 10, duration: 0.4 } }
     }
 });
