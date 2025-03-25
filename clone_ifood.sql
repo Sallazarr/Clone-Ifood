@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/03/2025 às 17:55
+-- Tempo de geração: 25/03/2025 às 22:06
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -41,8 +41,7 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id_cliente`, `nome`, `sobrenome`, `email`, `senha`, `telefone`) VALUES
-(1, 'Henrique', 'Salazar da Silva', 'henriquesalazards16@hotmail.com', '123123', '51982327837'),
-(2, 'Nadine', 'Castro D\'Avila', 'nadinecstt@gmail.com', '321321', '9999999999');
+(1, 'Henrique', 'Salazar da Silva', 'henriquesalazards16@hotmail.com', '123123', '51982327837');
 
 -- --------------------------------------------------------
 
@@ -69,7 +68,9 @@ CREATE TABLE `pedidos` (
   `id_cliente` int(11) DEFAULT NULL,
   `id_restaurante` int(11) DEFAULT NULL,
   `data_pedido` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(50) DEFAULT NULL
+  `status` varchar(50) DEFAULT NULL,
+  `id_item_pedido` int(11) DEFAULT NULL,
+  `endereco` varchar(325) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -93,8 +94,16 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id_produto`, `id_restaurante`, `nome`, `descricao`, `preco`, `categoria`, `imagem`) VALUES
-(1, 1, 'Pizza Margherita', 'Pizza clássica com molho de tomate, mozzarella de búfala, manjericão e azeite de oliva.', 35.00, NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0KFDZkjY8zVpr1ftr2n7Rm_OLf0Eq3inoxw&s'),
-(2, 1, 'Pizza Calabresa', 'Pizza com molho de tomate, queijo mozzarella, calabresa fatiada e cebola.', 38.00, NULL, 'https://diariodonordeste.verdesmares.com.br/image/contentid/policy:1.3277542:1663012513/Pizza-de-calabresa.jpg?f=default&$p$f=00df3e9');
+(1, 1, 'Pizza Margherita', 'Pizza clássica com molho de tomate, mozzarella de búfala, manjericão e azeite de oliva.', 35.00, NULL, 'https://rossopizza.com.br/salao/wp-content/uploads/2019/09/istock-181175167.jpg'),
+(2, 1, 'Pizza Calabresa', 'Pizza com molho de tomate, queijo mozzarella, calabresa fatiada e cebola.', 38.00, NULL, 'https://blog.novasafra.com.br/wp-content/uploads/2016/01/accb7d_37d37d9f1001e88384dafc6e5cc60c4f.jpg_1024-780x450.jpg'),
+(3, 1, 'Pizza Frango com Catupiry', 'Combinação cremosa de frango desfiado temperado com ervas finas, catupiry original e pitada de pimenta do reino.', 34.00, NULL, 'https://bonissima.com.br/web/image/product.template/34332/image_1024?unique=531376c'),
+(4, 2, 'Cheese Burger Especial', 'Pão brioche, blend 180g, queijo cheddar derretido, bacon crocante e cebola caramelizada.', 29.90, NULL, 'https://www.kikkoman.com.br/kikkomanbrasil/dist/img/destaque/receitas/X-Burger.jpg'),
+(5, 2, 'Veggie Burguer', 'Hambúrguer de grão-de-bico com pão integral, queijo coalho, abacate e maionese de ervas.', 32.00, NULL, 'https://img.freepik.com/fotos-premium/hamburguer-vegano-sem-carne-com-abacate-tomate-e-espinafre-na-mesa-e-vinho-tinto-na-taca_230432-1293.jpg'),
+(6, 2, 'Monster Bacon', 'Dois hambúrgueres 150g, quatro queijos, cebola crispy e duplo bacon com molho barbecue.', 38.50, NULL, 'https://www.minhareceita.com.br/app/uploads/2021/03/shutterstock_1751836019-scaled.jpg'),
+(7, 3, 'Niguiri Salmão Skin', 'Com arroz temperado, pele de salmão crocante e envolto por alga.', 18.00, NULL, 'https://nakayoshisushibar.meucatalogofacil.com/_core/_uploads//2021/03/2348240321jcdjae6i8c.jpeg'),
+(8, 3, 'Sashimi Atum Premium', 'Fatias generosas de atum fresco, servidas com raiz-forte e molho shoyu artesanal.', 28.00, NULL, 'https://live.staticflickr.com/3655/3654094091_dd4b8e3675_b.jpg'),
+(9, 3, 'Sushi Hossomaki Salmão', 'Peça clássica de sushi com fatia fresca de salmão sobre arroz.', 16.50, NULL, 'https://static.itdg.com.br/images/1200-630/a4880db5302563b309e2cd9664c8981c/303370-original.jpg'),
+(10, 3, 'Temaki Filadélfia', 'Cone de nori crocante recheado com arroz, salmão fresco, cream cheese e finalizado com cebolinha.', 24.90, NULL, 'https://media-cdn.tripadvisor.com/media/photo-s/18/24/7d/62/temaki-filadelfia-salmao.jpg');
 
 -- --------------------------------------------------------
 
@@ -116,7 +125,9 @@ CREATE TABLE `restaurantes` (
 --
 
 INSERT INTO `restaurantes` (`id_restaurante`, `nome`, `endereco`, `telefone`, `email`, `imagem`) VALUES
-(1, 'Pizzaria Bella Italia', 'Avenida Itália, 123 - Centro', '987654321', 'pizzaria@bellaitalia.com', 'https://img.freepik.com/vetores-premium/logotipo-da-pizza-italiana-com-uma-pizza-e-um-chef-segurando-uma-pizza_850580-18.jpg');
+(1, 'Pizzaria Bella Italia', 'Avenida Itália, 123 - Centro', '987654321', 'pizzaria@bellaitalia.com', 'https://img.freepik.com/vetores-premium/logotipo-da-pizza-italiana-com-uma-pizza-e-um-chef-segurando-uma-pizza_850580-18.jpg?semt=ais_hybrid'),
+(2, 'Burguer House', 'Avenida dos Sabores, 257 - Centro', '51123456789', 'hamburgui@gmail.com', 'https://img.freepik.com/vetores-premium/modelo-de-logotipo-de-hamburguer_476121-29.jpg'),
+(3, 'Sushi Yama', 'Avenida Japão, 456 - Liberdade, São Paulo', '(11) 91234-5678', 'reservas@sushiyama.com', 'https://static.vecteezy.com/ti/vetor-gratis/p1/16752182-de-logotipo-de-sushi-com-modelo-de-slogan-gratis-vetor.jpg');
 
 --
 -- Índices para tabelas despejadas
@@ -185,13 +196,13 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `restaurantes`
 --
 ALTER TABLE `restaurantes`
-  MODIFY `id_restaurante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_restaurante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para tabelas despejadas
