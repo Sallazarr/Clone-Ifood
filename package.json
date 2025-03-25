@@ -23,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/Sallazarr/Clone-Ifood/issues"
   },
-  "homepage": "https://github.com/Sallazarr/Clone-Ifood#readme"
+  "homepage": "https://github.com/Sallazarr/Clone-Ifood#readme",
+  "devDependencies": {}
 }

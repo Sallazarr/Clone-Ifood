@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel FoodI</title>
+    <link rel="stylesheet" href="/CSS/dasboard.css">
+    <script src="dashboard.js" defer></script>
+    <script src="node.js" defer></script>
+    <script src="login.js" defer></script>
+    <script src="cliente.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo ao FoodI</h1>
+        <button id="logout">Sair</button>
+    </header>
+
+    <main>
+        <section id="cliente-section" class="hidden">
+            <h2>Área do Cliente</h2>
+            <p>Escolha um restaurante para fazer seu pedido:</p>
+            <div id="restaurantes-lista" class="restaurantes-container"></div>
+        </section>
+    </main>
+</body>
+</html>

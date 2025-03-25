@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - FoodI</title>
+    <link rel="stylesheet" href="/CSS/produtos.css">
+    <script src="produtos.js" defer></script>
+</head>
+<body>
+    <!-- Barra superior -->
+    <header>
+        <h1>FoodI</h1>
+    </header>
+
+<!-- Informações do restaurante -->
+<div id="restaurante-info">
+    <img id="restaurante-imagem" src="" alt="">
+    <h2 id="restaurante-nome"></h2>
+</div>
+
+    <!-- Lista de produtos -->
+    <div id="produtos-lista"></div>
+
+    <!-- Adicionar o botão de carrinho -->
+    <button id="botao-carrinho" onclick="toggleCarrinho()">Carrinho <span id="carrinho-count"></span></button>
+
+    <!-- Tela lateral do carrinho -->
+    <div id="carrinho-sidebar" class="carrinho-sidebar">
+        <div id="carrinho-conteudo">
+            <h3>Carrinho</h3>
+            <div id="carrinho-lista"></div>
+            <p id="total-carrinho"></p>
+            <button onclick="toggleCarrinho()">Fechar</button>
+        </div>
+    </div>
+</body>
+</html>

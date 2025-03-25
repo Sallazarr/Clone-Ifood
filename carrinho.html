@@ -1,0 +1,37 @@
+<!-- carrinho.html -->
+<div id="carrinho-lista"></div>
+<button id="finalizar-compra">Finalizar Compra</button>
+
+<script>
+    window.onload = () => {
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        const listaCarrinho = document.getElementById("carrinho-lista");
+
+        if (carrinho.length === 0) {
+            listaCarrinho.innerHTML = "<p>Seu carrinho está vazio.</p>";
+        } else {
+            carrinho.forEach(item => {
+                const divItem = document.createElement("div");
+                divItem.classList.add("item-carrinho");
+                divItem.innerHTML = `
+                    <h3>${item.nome}</h3>
+                    <p>Preço: R$ ${item.preco}</p>
+                `;
+                listaCarrinho.appendChild(divItem);
+            });
+        }
+
+        // Finalizar a compra
+        document.getElementById("finalizar-compra").addEventListener("click", () => {
+            if (carrinho.length === 0) {
+                alert("Carrinho vazio!");
+            } else {
+                // Processar o pedido
+                alert("Compra finalizada!");
+                // Limpar o carrinho
+                localStorage.removeItem('carrinho');
+                listaCarrinho.innerHTML = "<p>Compra concluída!</p>";
+            }
+        });
+    };
+</script>

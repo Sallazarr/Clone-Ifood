@@ -3,84 +3,140 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-// Configuração do servidor
 const app = express();
 const port = 3000;
 
-// Configuração do CORS
 app.use(cors());
-
-// Middleware para analisar JSON no corpo da requisição
 app.use(bodyParser.json());
 
-// Configuração do banco de dados
+// Conexão com o banco de dados MySQL
 const db = mysql.createConnection({
     host: "localhost",
-    user: "root", // seu usuário MySQL
-    password: "", // sua senha MySQL (deixe vazio se não tiver senha)
-    database: "clone_ifood" // nome do seu banco de dados
+    user: "root",
+    password: "",
+    database: "clone_ifood"
 });
 
-// Conectar ao banco de dados
-db.connect((err) => {
+db.connect(err => {
     if (err) {
-        console.error("Erro de conexão: " + err.stack);
-        return;
+        console.error("Erro ao conectar no banco de dados:", err);
+    } else {
+        console.log("Conectado ao banco de dados.");
     }
-    console.log("Conectado ao banco de dados.");
+});
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
 });
 
-// Rota de login (POST)
+// 📌 Rota de Login para Clientes e Restaurantes
 app.post("/login", (req, res) => {
     const { email, senha } = req.body;
 
-    // Verificar se o usuário existe no banco de dados
-    const sql = "SELECT * FROM clientes WHERE email = ? LIMIT 1";
-    db.query(sql, [email], (err, result) => {
-        if (err) {
-            res.status(500).json({ mensagem: "Erro no servidor." });
-            return;
-        }
+    // Verifica se o usuário é um Cliente
+    const sqlCliente = "SELECT * FROM clientes WHERE email = ? AND senha = ?";
+    db.query(sqlCliente, [email, senha], (err, result) => {
+        if (err) return res.status(500).json({ success: false, message: "Erro no servidor" });
+        if (result.length > 0) return res.json({ success: true, userType: "cliente", userData: result[0] });
 
-        if (result.length === 0) {
-            return res.status(401).json({ mensagem: "Usuário não encontrado." });
-        }
+        // Se não for cliente, verifica se é um Restaurante
+        const sqlRestaurante = "SELECT * FROM restaurantes WHERE email = ? AND senha = ?";
+        db.query(sqlRestaurante, [email, senha], (err, result) => {
+            if (err) return res.status(500).json({ success: false, message: "Erro no servidor" });
+            if (result.length > 0) return res.json({ success: true, userType: "restaurante", userData: result[0] });
 
-        const user = result[0];
-
-        // Verifique se a senha está correta (aqui você faria a comparação de senha)
-        if (user.senha !== senha) {
-            return res.status(401).json({ mensagem: "Senha incorreta." });
-        }
-
-        // Determinar o tipo de usuário (cliente ou restaurante)
-        // Se o id_restaurante estiver preenchido, é um restaurante, caso contrário é um cliente
-        const userType = user.id_restaurante ? "restaurant" : "client";
-
-        // Resposta com o tipo de usuário
-        res.status(200).json({
-            nome: `${user.nome} ${user.sobrenome}`,
-            tipo: userType
+            return res.status(401).json({ success: false, message: "E-mail ou senha inválidos" });
         });
     });
 });
 
-// Rota para cadastrar cliente (apenas para teste, ajuste conforme necessário)
-app.post("/register", (req, res) => {
-    const { nome, sobrenome, email, senha, telefone } = req.body;
+// 📌 Rota para cadastro de Cliente ou Restaurante
+app.post("/cadastro", (req, res) => {
+    const { nome, sobrenome, email, telefone, senha } = req.body;
 
-    const sql = "INSERT INTO clientes (nome, sobrenome, email, senha, telefone) VALUES (?, ?, ?, ?, ?)";
-    db.query(sql, [nome, sobrenome, email, senha, telefone], (err, result) => {
-        if (err) {
-            res.status(500).json({ mensagem: "Erro ao cadastrar usuário." });
-            return;
+    // Verificando se os dados necessários estão presentes
+    if (!nome || !sobrenome || !email || !telefone || !senha) {
+        return res.status(400).json({ success: false, mensagem: "Todos os campos são obrigatórios" });
+    }
+
+    // Verificar se o e-mail já está cadastrado (cliente)
+    const sqlCliente = "SELECT * FROM clientes WHERE email = ?";
+    db.query(sqlCliente, [email], (err, result) => {
+        if (err) return res.status(500).json({ success: false, mensagem: "Erro no servidor" });
+
+        if (result.length > 0) {
+            return res.status(400).json({ success: false, mensagem: "E-mail já cadastrado como cliente" });
         }
 
-        res.status(201).json({ mensagem: "Usuário cadastrado com sucesso!" });
+        // Verificar se o e-mail já está cadastrado (restaurante)
+        const sqlRestaurante = "SELECT * FROM restaurantes WHERE email = ?";
+        db.query(sqlRestaurante, [email], (err, result) => {
+            if (err) return res.status(500).json({ success: false, mensagem: "Erro no servidor" });
+
+            if (result.length > 0) {
+                return res.status(400).json({ success: false, mensagem: "E-mail já cadastrado como restaurante" });
+            }
+
+            // Cadastro do cliente
+            const sql = "INSERT INTO clientes (nome, sobrenome, email, telefone, senha) VALUES (?, ?, ?, ?, ?)";
+            db.query(sql, [nome, sobrenome, email, telefone, senha], (err, result) => {
+                if (err) return res.status(500).json({ success: false, mensagem: "Erro ao cadastrar cliente" });
+                res.json({ success: true, mensagem: "Cadastro realizado com sucesso!" });
+            });
+        });
     });
 });
 
-// Iniciar o servidor
+// 📌 Rota para listar todos os Restaurantes
+app.get("/restaurantes", (req, res) => {
+    db.query("SELECT * FROM restaurantes", (err, result) => {
+        if (err) return res.status(500).json({ message: "Erro ao buscar restaurantes" });
+        res.json(result);
+    });
+});
+
+app.get("/restaurantes/:id", (req, res) => {
+    const { id } = req.params;
+    db.query("SELECT * FROM restaurantes WHERE id_restaurante = ?", [id], (err, result) => {
+        if (err) {
+            console.error("Erro no banco de dados:", err);
+            return res.status(500).json({ message: "Erro ao buscar restaurante" });
+        }
+        if (result.length === 0) {
+            return res.status(404).json({ message: "Restaurante não encontrado" });
+        }
+        console.log("Resultado da query:", result); // Adicione este log
+        res.json(result[0]);
+    });
+});
+
+
+// 📌 Rota para listar os Produtos de um Restaurante
+app.get("/produtos/:idRestaurante", (req, res) => {
+    const { idRestaurante } = req.params;
+    db.query("SELECT * FROM produtos WHERE id_restaurante = ?", [idRestaurante], (err, result) => {
+        if (err) return res.status(500).json({ message: "Erro ao buscar produtos" });
+        res.json(result);
+    });
+});
+
+// 📌 Rota para adicionar um Produto (somente restaurantes podem adicionar)
+app.post("/produtos", (req, res) => {
+    const { nome, descricao, preco, id_restaurante } = req.body;
+
+    if (!nome || !descricao || !preco || !id_restaurante) {
+        return res.status(400).json({ message: "Todos os campos são obrigatórios" });
+    }
+
+    const sql = "INSERT INTO produtos (nome, descricao, preco, id_restaurante) VALUES (?, ?, ?, ?)";
+    db.query(sql, [nome, descricao, preco, id_restaurante], (err, result) => {
+        if (err) return res.status(500).json({ message: "Erro ao adicionar produto" });
+        res.json({ success: true, message: "Produto cadastrado com sucesso!" });
+    });
+});
+
+// Iniciando o Servidor
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
+

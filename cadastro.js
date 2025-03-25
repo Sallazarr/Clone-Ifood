@@ -25,7 +25,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
         const data = await response.json();
         if (response.ok) {
             alert("Cadastro realizado com sucesso!");
-            window.location.href = "/Clone Ifood/index.html"; // Redireciona para login
+            window.location.href = "/index.html"; // Redireciona para login
         } else {
             errorMessage.innerText = data.mensagem || "Erro ao cadastrar.";
         }
