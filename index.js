@@ -51,13 +51,13 @@ document.getElementById('themeSwitcher').addEventListener('click', function(){
         root.style.setProperty('--color-primary-hover', '#0068d6');
         root.style.setProperty('--color-background', 'rgba(18, 18, 18, 1)');
         root.style.setProperty('--color-background-light', 'rgba(31, 31, 31, 0.9)');
-        root.style.setProperty('--color-text', '#e0e0e0');
+        root.style.setProperty('--color-text', '#c5c5c5');
         root.style.setProperty('--color-error', '#ff4d4d');
         root.style.setProperty('--color-shadow', 'rgba(0, 0, 0, 0.6)');
         root.style.setProperty('--color-link', '#66b3ff');
         // Aplica o gradiente para o fundo do body
         body.style.background = 'var(--color-gradient)';
-        root.style.setProperty('--opacity-background', '0.7'); // 70% opacidade
+       
 
         document.querySelector('.imgLeft').src = 'CSS/img/restaurantWhite.png';
         document.querySelector('.imgRight').src = 'CSS/img/snackWhite.png';

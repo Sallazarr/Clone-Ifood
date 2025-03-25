@@ -9,16 +9,16 @@
     --color-error: #ff0000;
     --color-shadow: rgba(0, 0, 0, 0.25);
     --color-link: #007bff;
-    --opacity-background: 1;
+
 }
 
 /* Definindo as cores para o tema escuro (serão usadas quando o tema escuro for ativado) */
-/* [data-theme='dark'] {
+ /*[data-theme='dark'] {
     --color-primary: #66b3ff;
     --color-primary-hover: #3385cc;
     --color-background: rgba(18, 18, 18, 1);
     --color-background-light: rgba(31, 31, 31, 0.9);
-    --color-text: #e0e0e0;
+    --color-text: #c5c5c5;
     --color-error: #ff4d4d;
     --color-shadow: rgba(0, 0, 0, 0.6);
     --color-link: #66b3ff;
@@ -79,7 +79,7 @@ body {
     max-height:100vh;
     transition: transform .25s;
     flex-wrap: wrap;
-    opacity: var(--opacity-background);
+
 }
 
 .left-side:hover {
@@ -183,7 +183,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     position: relative;
-    opacity: var(--opacity-background);
+
 }
 
 .login-container > h2 {

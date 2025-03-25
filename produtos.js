@@ -60,6 +60,16 @@ window.onload = () => {
     carregarCarrinho();
 };
 
+// Adicione este código no seu arquivo produtos.js
+document.getElementById('voltar-btn').addEventListener('click', function() {
+    // Volta para a página anterior (lista de restaurantes)
+    // window.location.href = 'index.html'; // Ou o nome da sua página principal
+    
+    // Alternativa: usar history.back() para voltar à página imediatamente anterior
+    window.history.back();
+});
+
+
 // Função para adicionar produtos ao carrinho
 function adicionarAoCarrinho(id, nome, preco) {
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
@@ -152,4 +162,29 @@ function atualizarIconeCarrinho() {
 // Função para exibir ou ocultar a tela lateral do carrinho
 function toggleCarrinho() {
     document.getElementById("carrinho-sidebar").classList.toggle("exibir");
+}
+
+function finalizarCompra() {
+    // Verifica se há itens no carrinho
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    
+    if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+    }
+    
+    // Mostra confirmação antes de finalizar
+    if (confirm('Deseja finalizar a compra?')) {
+        // Redireciona para a página de checkout
+        window.location.href = "checkout.html";
+        
+        // Limpa o carrinho após um pequeno delay para garantir o redirecionamento
+        setTimeout(() => {
+            localStorage.removeItem('carrinho');
+            // Atualiza o contador do carrinho se existir na página de checkout
+            if (document.getElementById('carrinho-count')) {
+                document.getElementById('carrinho-count').textContent = '0';
+            }
+        }, 1000);
+    }
 }

@@ -22,6 +22,10 @@
     <!-- Lista de produtos -->
     <div id="produtos-lista"></div>
 
+    <button id="voltar-btn" class="btn-voltar">
+        ← Voltar para Restaurantes
+    </button>
+
     <!-- Adicionar o botão de carrinho -->
     <button id="botao-carrinho" onclick="toggleCarrinho()">Carrinho <span id="carrinho-count"></span></button>
 
@@ -32,6 +36,7 @@
             <div id="carrinho-lista"></div>
             <p id="total-carrinho"></p>
             <button onclick="toggleCarrinho()">Fechar</button>
+            <button id="finalizar-compra" onclick="finalizarCompra()">Finalizar Compra</button>
         </div>
     </div>
 </body>

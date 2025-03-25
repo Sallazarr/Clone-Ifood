@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - FoodI</title>
+    <link rel="stylesheet" href="CSS/checkout.css">
+</head>
+<body>
+    <header>
+        <h1>FoodI</h1>
+    </header>
+
+    <main class="checkout-container">
+        <h2>Finalizar Compra</h2>
+        
+        <section class="itens-carrinho">
+            <h3>Seu Pedido</h3>
+            <div id="lista-itens"></div>
+            <p id="total-pedido"></p>
+        </section>
+
+        <section class="dados-entrega">
+            <h3>Dados de Entrega</h3>
+            <form>
+                <input type="text" placeholder="Nome completo" required>
+                <input type="tel" placeholder="Telefone" required>
+                <input type="text" placeholder="Endereço" required>
+                <input type="text" placeholder="Número" required>
+                <input type="text" placeholder="Complemento">
+                <input type="text" placeholder="Bairro" required>
+                <input type="text" placeholder="Cidade" required>
+                <input type="text" placeholder="CEP" required>
+            </form>
+        </section>
+
+        <section class="pagamento">
+            <h3>Forma de Pagamento</h3>
+            <div class="opcoes-pagamento">
+                <label>
+                    <input type="radio" name="pagamento" value="cartao" checked> 
+                    Cartão de Crédito
+                </label>
+                <label>
+                    <input type="radio" name="pagamento" value="dinheiro"> 
+                    Dinheiro
+                </label>
+                <label>
+                    <input type="radio" name="pagamento" value="pix"> 
+                    PIX
+                </label>
+            </div>
+        </section>
+
+        <button id="confirmar-pedido" class="btn-confirmar">Confirmar Pedido</button>
+    </main>
+
+    
+    <script src="checkout.js"></script>
+</body>
+</html>
